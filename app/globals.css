@@ -1,0 +1,80 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #0B0B0F;
+  --foreground: #f8fafc;
+  --accent: #FF4FCB;
+  --accent-glow: #E43DFF;
+  --accent-deep: #9B5CFF;
+  --glass: rgba(11, 11, 15, 0.7);
+  --border: rgba(255, 79, 203, 0.2);
+}
+
+@layer base {
+  body {
+    @apply bg-background text-foreground font-main antialiased selection:bg-accent/30 selection:text-white;
+    overflow-x: hidden;
+  }
+}
+
+@layer components {
+  .glass {
+    @apply backdrop-blur-xl bg-glass border border-border shadow-[0_8px_32px_0_rgba(0,0,0,0.37)];
+  }
+
+  .glow-text {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-accent via-accent-glow to-accent-deep;
+  }
+
+  .glow-box {
+    @apply shadow-[0_0_15px_rgba(255,79,203,0.3)] hover:shadow-[0_0_25px_rgba(228,61,255,0.6)] transition-all duration-300;
+  }
+
+  .section-container {
+    @apply container mx-auto px-6 py-24 min-h-screen flex flex-col justify-center;
+  }
+
+  .heading-1 {
+    @apply font-display font-extrabold text-5xl md:text-8xl tracking-tight leading-[0.9];
+  }
+
+  .subheading {
+    @apply font-display font-bold text-xl md:text-2xl text-accent tracking-wide uppercase;
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-stone-950;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-stone-800 rounded-full hover:bg-accent transition-colors;
+}
+
+/* Lenis smoothing integration */
+html.lenis {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
+}
